@@ -108,7 +108,6 @@ void setup(){
 
 void draw(){
   background(backgroundColor);
-  //image(photo, (1000/2)-(250/2), 500/4-(250/2));
   stroke(0);
   strokeWeight(1);
   fill(255);
@@ -143,20 +142,13 @@ void draw(){
     if ((flash / 800) % 2  == 0){
       displayRightSignal();
     }
-    //displayRightSignal();
-    
   }
   if (leftSignalToggle){
     int flash = millis();
     if ((flash / 800) % 2  == 0){
       displayLeftSignal();
-    }
-    //displayLeftSignal();
-    
+    } 
   }
-  
-  //lineAngle(100, 100, (360*(percSpeed/100)), 50);
-  //lineAngle2(100, 100, (360*(percSpeed/100)), 50);
   speedometer();
   tachometer();
   tachBackground();
@@ -169,12 +161,6 @@ void draw(){
 }
 
 void mousePressed() {
-  //if (turnRight.rectOver){
-  //  backgroundColor = 123;
-  //}
-  //if (turnLeft.rectOver){
-  //  backgroundColor = 248;
-  //}
   if (accelerator.rectOver){
     if (selectedGear == "D"){
       if(fuelLevel > 0){
@@ -247,24 +233,6 @@ void mousePressed() {
   
 }
 
-void keyPressed() {
-  if (key == CODED) {
-    if (keyCode == UP) {
-      backgroundColor = 255;
-      accelerateStart();
-    } else if (keyCode == DOWN) {
-      backgroundColor = 0;
-      accelerateToggle = false;
-    } 
-  } else {
-    backgroundColor = backgroundColor;
-  }
-}
-
-//void keyReleased() {
-//  backgroundColor = 248;
-//}
-
 void accelerateStart(){
   startAcc = millis();
   accelerateToggle = true;
@@ -326,18 +294,6 @@ void slowdown(int time){
     speed = 0;
   }
 }
-
-//void lineAngle(int x, int y, float angle, float length)
-//{
-//  strokeWeight(5);
-//  line(x-cos(angle)*(length/2), y-sin(angle)*(length/2), x-cos(angle)*length, y-sin(angle)*length);
-//  strokeWeight(1);
-//}
-
-//void lineAngle2(int x, int y, float angle, float length)
-//{
-//  line(x, y, x-cos(angle)*length, y-sin(angle)*length);
-//}
 
 void speedometer(){
   int x = 1000/2+adjX;
@@ -552,7 +508,6 @@ void engineTempBackground(){
   }
   textSize(14);
   fill(0);
-  //String sTemp = nf(temp, 0, 0);
   text("Engine\n"+round(temp)+"°", x-10, y-10);
  
 }
@@ -565,7 +520,6 @@ void fuelGaugeBackground(){
   noFill();
   arc(x, y, 175, 175, PI*1.25, PI*2.4);
   arc(x, y, 150, 150, PI*1.25, PI*2.4);
-  //int intervals = 40;
   float a = PI*2.25;
   float b = PI*1.15;
   for (float i=0; i<5; i++){
@@ -586,7 +540,6 @@ void fuelGaugeBackground(){
       text("Empty", x-cos(a+(b*(i/4)))*120, y-sin(a+(b*(i/4)))*120);
     } 
   }
- 
   if(distanceRemaining >= 0){
     textSize(14);
     fill(0);
@@ -613,7 +566,6 @@ void fuelGuage(){
   noFill();
   arc(x, y, 162.5, 162.5, endFuel, startFuel);
   line(x-cos(a+(b*(1-fuelLevel)))*75, y-sin(a+(b*(1-fuelLevel)))*75, x-cos(a+(b*(1-fuelLevel)))*90, y-sin(a+(b*(1-fuelLevel)))*90);
-  
 }
 
 void useFuel(float speed, int time){
@@ -631,7 +583,6 @@ void engineTempGuage(){
   if (temp>100){
     percTemp = (temp-100)/160;
   }
-  //percTemp = temp/260;
   int x = 1000/4+adjX;
   int y = 500/4+adjY;
   float a = PI*1.6;
